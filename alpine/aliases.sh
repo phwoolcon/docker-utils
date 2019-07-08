@@ -1,0 +1,8 @@
+alias ls='ls --color=auto'
+alias ll='ls -la --group-directories-first'
+alias lh='ll -h'
+alias ping='ping -c4'
+alias apk-add='apk add --no-cache'
+alias apk-del='apk del'
+alias apk-update='apk update'
+alias apk-upgrade='apk upgrade'
