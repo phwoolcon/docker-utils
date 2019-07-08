@@ -9,6 +9,7 @@ For Alpine Linux
 
 Pick the fastest mirror from http://dl-cdn.alpinelinux.org/alpine/MIRRORS.txt
 ```dockerfile
+ARG ALPINE_REPO=""
 ENV UTILS_BASE="https://raw.githubusercontent.com/phwoolcon/docker-utils/master/alpine"
 RUN wget ${UTILS_BASE}/pick-mirror.sh -O /usr/local/bin/pick-mirror.sh; \
     chmod +x /usr/local/bin/pick-mirror.sh; \
