@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-FPM_WORKERS=$(( $(grep -c '^processor' /proc/cpuinfo) * 2 ));
-sed -i "s|pm.max_children = 5|pm.max_children = ${FPM_WORKERS}|g" /etc/php7/php-fpm.d/www.conf;
+sed -i "s|pm.max_children = 5|pm.max_children = $(( $(nproc) * 2 ))|g" /etc/php7/php-fpm.d/www.conf;
