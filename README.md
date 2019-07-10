@@ -12,7 +12,7 @@ Pick the fastest mirror from http://dl-cdn.alpinelinux.org/alpine/MIRRORS.txt
 ARG ALPINE_REPO=""
 ARG UTILS_BASE="https://raw.githubusercontent.com/phwoolcon/docker-utils/master"
 RUN wget ${UTILS_BASE}/alpine/pick-mirror -O /usr/local/bin/pick-mirror; \
-    chmod +x /usr/local/bin/pick-mirror; \
+    chmod +x /usr/local/bin/*; \
     pick-mirror v3.9; \
     apk update; apk upgrade;
 ```
@@ -36,6 +36,8 @@ RUN apk add --no-cache bash coreutils nginx \
     php7 php7-curl php7-fileinfo php7-fpm php7-gd php7-json php7-mbstring php7-opcache php7-openssl \
     php7-pdo php7-pdo_mysql php7-pecl-redis php7-phalcon php7-simplexml php7-sodium php7-tokenizer php7-xml php7-zip \
     composer;
+    wget ${UTILS_BASE}/alpine/determine-fpm-workers -O /usr/local/bin/determine-fpm-workers; \
+    chmod +x /usr/local/bin/*; \
     wget ${UTILS_BASE}/alpine/nginx/00-log-formats.conf -O /etc/nginx/conf.d/00-log-formats.conf; \
     wget ${UTILS_BASE}/alpine/nginx/default.conf -O /etc/nginx/conf.d/default.conf; \
     echo 'error_log = /mnt/data/log/php7/error.log' > /etc/php7/php-fpm.d/00-log.conf; \
