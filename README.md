@@ -5,15 +5,15 @@ Some handy tools for `Dockerfile`
 For Alpine Linux
 --
 
-### pick-mirror.sh
+### pick-mirror
 
 Pick the fastest mirror from http://dl-cdn.alpinelinux.org/alpine/MIRRORS.txt
 ```dockerfile
 ARG ALPINE_REPO=""
 ARG UTILS_BASE="https://raw.githubusercontent.com/phwoolcon/docker-utils/master"
-RUN wget ${UTILS_BASE}/alpine/pick-mirror.sh -O /usr/local/bin/pick-mirror.sh; \
-    chmod +x /usr/local/bin/pick-mirror.sh; \
-    pick-mirror.sh v3.9; \
+RUN wget ${UTILS_BASE}/alpine/pick-mirror -O /usr/local/bin/pick-mirror; \
+    chmod +x /usr/local/bin/pick-mirror; \
+    pick-mirror v3.9; \
     apk update; apk upgrade;
 ```
 If you want to specify the repository, use `--build-arg ALPINE_REPO=`, e.g.:
