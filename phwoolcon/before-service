@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 ( [  -z "$SET_UID" ] ) && {
-    usermod -u ${SET_UID} nobody
-    groupmod -g ${SET_UID} nobody
+    chown -R nobody:nobody /srv/http
 }
