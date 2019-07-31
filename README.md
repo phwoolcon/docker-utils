@@ -46,6 +46,13 @@ RUN apk add --no-cache bash coreutils nginx \
     sed -i 's|expose_php = On|expose_php = Off|g' /etc/php7/php.ini;
 ```
 
+## Phwoolcon on docker hub
+https://hub.docker.com/u/phwoolcon
+```bash
+docker build --no-cache -t phwoolcon/phwoolcon -f phwoolcon/Dockerfile-prod phwoolcon/
+docker build --no-cache -t phwoolcon/phwoolcon-dev -f phwoolcon/Dockerfile-dev phwoolcon/
+```
+
 Common Tools
 --
 
