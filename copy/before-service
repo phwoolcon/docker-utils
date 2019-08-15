@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+[[ ! -z ${SET_UID} ]] && {
+    chown -R nobody:nobody /srv/http
+}
