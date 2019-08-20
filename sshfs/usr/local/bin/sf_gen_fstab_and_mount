@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+> /etc/fstab
+cat /data/etc/fstab/* >> /etc/fstab
+
+cd /sshfs
+ls /data/etc/fstab/ | xargs mkdir -p
+
+mount -a;

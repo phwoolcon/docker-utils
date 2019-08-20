@@ -1,0 +1,11 @@
+version: "3"
+services:
+  sshfs:
+    build: ./sshfs
+    ports:
+      - "${SSH_PORT}:22"
+    volumes:
+      - /data/net-storage:/data
+    privileged: true
+    hostname: sshfs
+    restart: always
