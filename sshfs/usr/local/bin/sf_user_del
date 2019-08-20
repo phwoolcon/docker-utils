@@ -3,8 +3,12 @@
 USERNAME=$1
 
 umount "/sshfs/${USERNAME}/0-share"
+rm -d "/sshfs/${USERNAME}/0-share"
 umount "/sshfs/${USERNAME}/1-dept"
+rm -d "/sshfs/${USERNAME}/1-dept"
 umount "/sshfs/${USERNAME}/2-me"
+rm -d "/sshfs/${USERNAME}/2-me"
+rm -d "/sshfs/${USERNAME}"
 deluser "${USERNAME}"
 
 cp -a /etc/group /data/etc/group
