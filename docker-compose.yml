@@ -5,7 +5,8 @@ services:
     ports:
       - "${SSH_PORT}:22"
     volumes:
-      - /data/net-storage:/data
+      - /data/sshfs:/data
+      - /data/sshfs/etc/root.ssh:/root/.ssh
     privileged: true
     hostname: sshfs
     restart: always

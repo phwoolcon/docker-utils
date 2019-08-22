@@ -9,6 +9,8 @@ ssh-keygen -A -f /data;
 cp /data/etc/group /etc/group
 cp /data/etc/passwd /etc/passwd
 cp /data/etc/shadow /etc/shadow
+
+ls /data/etc/fstab/ | xargs -n1 sf_gen_sshfs_user_dir
 sf_gen_fstab_and_mount;
 
 umask 002
@@ -19,4 +21,4 @@ chmod g+s /data/depts
 chgrp sshfs /data/share
 chmod g+w /data/share
 chmod g+s /data/share
-/usr/sbin/sshd -D -E /data/log/sshd.log;
+/usr/sbin/sshd -D -E /data/log/sshfs.log;

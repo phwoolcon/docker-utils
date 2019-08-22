@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 
 > /etc/fstab
-cat /data/etc/fstab/* >> /etc/fstab
-
-cd /sshfs
-ls /data/etc/fstab/ | xargs mkdir -p
+2>/dev/null cat /data/etc/fstab/* >> /etc/fstab
 
 mount -a;
+
+echo Updated and remounted /etc/fstab >> /data/log/sshfs.log
