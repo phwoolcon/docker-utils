@@ -1,7 +1,8 @@
 Secure LAN Storage
 ==
+## Usage
 ```bash
-docker-compose up -d --build
+./run.sh
 ```
 
 ## SSHFS
