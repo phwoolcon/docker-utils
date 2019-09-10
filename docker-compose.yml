@@ -19,7 +19,6 @@ services:
       - "${HTTP_PORT}:8000"
     volumes:
       - /data/admin:/data
-      - /data/admin/log:/data/log
       - /data/sshfs/etc/root.ssh:/data/sshfs/etc/root.ssh
     hostname: sshfs-admin
     restart: always
