@@ -5,10 +5,6 @@ docker-compose up -d --build
 ```
 
 ## SSHFS
-To add a user:
-```bash
-sf_user_add test dev "THE SSH KEY OF USER TEST"
-```
 The `/data` volume:
 ```text
 /data/
