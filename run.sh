@@ -24,9 +24,11 @@ function askEnvConfig() {
     touch ./.env
     . ./.env
     KEYS=($(awk -F "=" '{print $1}' ./.env.example))
+    echo Setting SSHFS environment...
     for KEY in "${KEYS[@]}"; do
         askForEnv ${KEY}
     done
+    echo Done
 }
 
 function askForEnv() {
