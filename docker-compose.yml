@@ -17,6 +17,7 @@ services:
     image: phwoolcon/sshfs-admin
     ports:
       - "${HTTP_PORT}:8000"
+      - "${HTTPS_PORT}:8443"
     volumes:
       - /data/admin:/data
       - /data/sshfs/etc/root.ssh:/data/sshfs/etc/root.ssh
