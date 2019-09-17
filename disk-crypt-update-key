@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+function get_old_key() {
+    echo oldkey_to_be_fetch
+}
+
+function get_new_key() {
+    echo newkey_to_be_fetch
+}
+
+function get_dev() {
+    cryptsetup status $(cat /etc/crypttab | awk '{print $1}') | grep "device:" | awk '{print $2}'
+}
+
+function add_new_key() {
+    cryptsetup luksAddKey $1 <<IN
+$2
+$3
+$3
+IN
+}
+
+function remove_old_key() {
+    cryptsetup luksRemoveKey $1 <<IN
+$2
+IN
+}
+
+OLD_KEY=$(get_old_key)
+NEW_KEY=$(get_new_key)
+DEV=$(get_dev)
+
+add_new_key "${DEV}" "${OLD_KEY}" "${NEW_KEY}"
+remove_old_key "${DEV}" "${OLD_KEY}"
