@@ -1,7 +1,7 @@
 version: "3"
 services:
   sshfs:
-    build: ./sshfs
+    image: phwoolcon/sshfs
     ports:
       - "${SSH_PORT}:22"
     volumes:
