@@ -47,7 +47,9 @@ function changeBareMetalSshPort() {
 }
 
 function runServices() {
-    sudo docker-compose up -d --build && sudo docker image prune -f
+    sudo docker-compose pull
+    sudo docker-compose up -d --build
+    sudo docker image prune -f
     sudo docker-compose ps
 }
 
