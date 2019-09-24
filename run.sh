@@ -47,7 +47,7 @@ function changeBareMetalSshPort() {
 }
 
 function runServices() {
-    git pull
+    [[ -d .git ]] && git pull
     sudo docker-compose pull
     sudo docker-compose up -d --build
     sudo docker image prune -f
