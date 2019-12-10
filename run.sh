@@ -14,8 +14,8 @@ function detectAndInstallDocker() {
     sudo apt-get remove -y docker docker-engine docker.io containerd runc
     sudo apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
-        | sudo tee /etc/apt/sources.list.d/docker.list
+    echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" |
+        sudo tee /etc/apt/sources.list.d/docker.list
     sudo apt-get update
     sudo apt-get install -y containerd.io docker-ce-cli docker-ce docker-compose
 }
@@ -28,6 +28,10 @@ function askEnvConfig() {
     for KEY in "${KEYS[@]}"; do
         askForEnv ${KEY}
     done
+    . ./.env
+    sudo mkdir -p /data/admin
+    getIp | sudo tee /data/admin/sshfs_host
+    echo "${SSH_PORT}" | sudo tee -a /data/admin/sshfs_host
     echo Done
 }
 
@@ -52,6 +56,10 @@ function runServices() {
     sudo docker-compose up -d --build
     sudo docker image prune -f
     sudo docker-compose ps
+}
+
+function getIp() {
+    ip route get 8.8.8.8 | sed -n 's/^.* src \(.*\)/\1/p' | cut -d ' ' -f1
 }
 
 main
