@@ -32,6 +32,7 @@ function askEnvConfig() {
     sudo mkdir -p /data/admin
     getIp | sudo tee /data/admin/sshfs_host
     echo "${SSH_PORT}" | sudo tee -a /data/admin/sshfs_host
+    echo "${HTTP_PORT}" | sudo tee -a /data/admin/sshfs_host
     echo Done
 }
 
