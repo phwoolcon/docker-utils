@@ -1,11 +1,13 @@
 #!/usr/bin/env sh
 
-VERSION=${1:-latest-stable}
+VERSION_PATTERN="[0-9]*.[0-9]*"
+VERSION=v$(grep -o "VERSION_ID=$VERSION_PATTERN" /etc/os-release | grep -o "${VERSION_PATTERN}\$")
 
 main() {
     if [ -n "${ALPINE_REPO}" ]; then
         save_repo ${ALPINE_REPO} ${VERSION}
     else
+        cd
         run_detect
     fi
 }
