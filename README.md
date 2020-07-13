@@ -13,7 +13,7 @@ ARG ALPINE_REPO=""
 ARG UTILS_BASE="https://raw.githubusercontent.com/phwoolcon/docker-utils/master"
 RUN wget ${UTILS_BASE}/alpine/pick-mirror -O /usr/local/bin/pick-mirror; \
     chmod +x /usr/local/bin/*; \
-    pick-mirror v3.9; \
+    pick-mirror; \
     apk update; apk upgrade;
 ```
 If you want to specify the repository, use `--build-arg ALPINE_REPO=`, e.g.:
@@ -63,4 +63,13 @@ Sorted version of `du`, skipped directories on different file systems.
 ARG UTILS_BASE="https://raw.githubusercontent.com/phwoolcon/docker-utils/master"
 RUN wget ${UTILS_BASE}/dusort -O /usr/local/bin/dusort; \
     chmod +x /usr/local/bin/dusort;
+```
+
+### docker-host
+Get the IP address of the docker host
+
+```dockerfile
+ARG UTILS_BASE="https://raw.githubusercontent.com/phwoolcon/docker-utils/master"
+RUN wget ${UTILS_BASE}/docker-host -O /usr/local/bin/docker-host; \
+    chmod +x /usr/local/bin/docker-host;
 ```
