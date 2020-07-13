@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+grep /docker/ /proc/self/cgroup > /dev/null 2>&1 && {
+    [ "$1" = "-v" ] && echo yes
+    exit 0
+} || {
+    [ "$1" = "-v" ] && echo no
+    exit 1
+}

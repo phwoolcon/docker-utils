@@ -1,2 +1,2 @@
-#!/usr/bin/env bash
-du -xhd1 "$@"|sort -h
+#!/usr/bin/env sh
+du -xhd1 "$@" | sort -h
