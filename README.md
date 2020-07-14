@@ -38,7 +38,7 @@ RUN apk add --no-cache bash coreutils nginx \
     composer;
     wget ${UTILS_BASE}/alpine/determine-fpm-workers -O /usr/local/bin/determine-fpm-workers; \
     chmod +x /usr/local/bin/*; \
-    wget ${UTILS_BASE}/alpine/nginx/00-log-formats.conf -O /etc/nginx/conf.d/00-log-formats.conf; \
+    wget ${UTILS_BASE}/alpine/nginx/00-init.conf -O /etc/nginx/conf.d/00-init.conf; \
     wget ${UTILS_BASE}/alpine/nginx/default.conf -O /etc/nginx/conf.d/default.conf; \
     echo 'error_log = /mnt/data/log/php7/error.log' > /etc/php7/php-fpm.d/00-log.conf; \
     sed -i 's|/var/log|/mnt/data/log|g' /etc/nginx/nginx.conf /etc/php7/php-fpm.d/www.conf; \
