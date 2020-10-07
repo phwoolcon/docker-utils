@@ -1,0 +1,33 @@
+version: "3"
+services:
+  server:
+    image: gocd/gocd-server:v20.8.0
+    hostname: gocd_server
+    ports:
+      - "8153:8153"
+    volumes:
+      - ./data/server/:/godata/
+      - ./data/.ssh:/home/go/.ssh/
+      - ./init-alpine.sh:/init-alpine.sh
+    restart: always
+    environment:
+      - ENV=/etc/profile
+      - GO_SERVER_SYSTEM_PROPERTIES='-Dgo.plugin.upload.enabled=true'
+  agent:
+    image: gocd/gocd-agent-alpine-3.12:v20.8.0
+    hostname: gocd_agent
+    user: root
+    volumes:
+      - ./data/agent/:/godata/
+      - ./data/.ssh:/root/.ssh/
+      - ./init-alpine.sh:/init-alpine.sh
+      - /var/run/docker.sock:/var/run/docker.sock
+    links:
+      - "server"
+    depends_on:
+      - "server"
+    restart: always
+    environment:
+      - ENV=/etc/profile
+      - GO_SERVER_URL=http://server:8153/go
+      - AGENT_AUTO_REGISTER_KEY
