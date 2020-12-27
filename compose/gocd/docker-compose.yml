@@ -1,7 +1,7 @@
 version: "3"
 services:
   server:
-    image: gocd/gocd-server:v20.8.0
+    image: gocd/gocd-server:v20.10.0
     hostname: gocd_server
     ports:
       - "8153:8153"
@@ -14,7 +14,7 @@ services:
       - ENV=/etc/profile
       - GO_SERVER_SYSTEM_PROPERTIES='-Dgo.plugin.upload.enabled=true'
   agent:
-    image: gocd/gocd-agent-alpine-3.12:v20.8.0
+    image: gocd/gocd-agent-alpine-3.12:v20.10.0
     hostname: gocd_agent
     user: root
     volumes:
