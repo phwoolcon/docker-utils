@@ -13,3 +13,13 @@ services:
     volumes:
       - ./data/registry:/var/lib/registry
       - ./data/auth:/auth
+  ui:
+    image: joxit/docker-registry-ui:static
+    ports:
+      - 5001:80
+    environment:
+      - REGISTRY_TITLE=Huixian Docker Registry
+      - REGISTRY_URL=http://registry:5000
+      - DELETE_IMAGES=true
+    depends_on:
+      - registry
