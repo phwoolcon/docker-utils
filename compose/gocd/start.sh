@@ -11,4 +11,4 @@ set +a
 docker-compose up -d
 docker-compose exec --user root server bash /init-alpine.sh
 docker-compose exec --user root agent bash /init-alpine.sh
-docker-compose exec --user root agent apk add docker
+docker-compose exec --user root agent apk add docker rsync
