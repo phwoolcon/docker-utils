@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+{ while true; do registry garbage-collect /etc/docker/registry/config.yml; sleep 1800; done } &
+registry serve /etc/docker/registry/config.yml

@@ -14,6 +14,8 @@ services:
     volumes:
       - ./data/registry:/var/lib/registry
       - ./data/auth:/auth
+      - ./entrypoint:/entrypoint
+    entrypoint: [/entrypoint]
   ui:
     image: joxit/docker-registry-ui:static
     ports:

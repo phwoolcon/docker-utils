@@ -83,3 +83,7 @@ RUN wget ${UTILS_BASE}/in-docker -O /usr/local/bin/in-docker; \
     chmod +x /usr/local/bin/*; \
     in-docker && run-your-command;
 ```
+
+### MEMO
+
+* [Docker BuildKit GC](https://github.com/docker/cli/issues/2325#issuecomment-733975408)
