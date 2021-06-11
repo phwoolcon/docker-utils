@@ -1,0 +1,18 @@
+version: "3"
+services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx
+    hostname: nginx
+    volumes:
+      - ./data/config/conf.d:/etc/nginx/conf.d
+      - ./data/config/snippets:/etc/nginx/snippets
+      - ./data/config/sites-enabled:/etc/nginx/sites-enabled
+      - ./data/config/sites-available:/etc/nginx/sites-available
+      - ./data/config/ssl:/etc/nginx/ssl
+      - ./data/log:/var/log/nginx
+      - /srv/http:/srv/http
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
