@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  server:
+    image: gitea/gitea
+    container_name: gitea
+    hostname: gitea
+    restart: always
+    volumes:
+      - /home/git/.ssh/:/data/git/.ssh/
+      - ./data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - "3000:3000"
+      - "127.0.0.1:2222:22"
+    env_file:
+      - .env
