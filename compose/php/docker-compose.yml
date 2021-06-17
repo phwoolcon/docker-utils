@@ -1,0 +1,30 @@
+version: "3"
+services:
+  fpm:
+    image: php:fpm-alpine
+    container_name: php-fpm
+    volumes:
+#      - ./data/config:/usr/local/etc/
+      - /srv/http:/srv/http
+    ports:
+      - "9790:9000"
+  fpm-7:
+    image: php:7-fpm-alpine
+    container_name: php-fpm7
+    volumes:
+#      - ./data/config:/usr/local/etc/
+      - /srv/http:/srv/http
+    ports:
+      - "9797:9000"
+  fpm-5:
+    image: php:5-fpm-alpine
+    container_name: php-fpm5
+    restart: always
+    volumes:
+#      - ./data/config:/usr/local/etc/
+      - "${WWW_ROOT}:/srv/http"
+      - ./init.sh:/init.sh
+      - ./nginx-site.conf:/nginx-site.conf
+    ports:
+      - "9795:9000"
+      - "9880:80"
