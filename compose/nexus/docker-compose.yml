@@ -1,0 +1,20 @@
+version: "3.6"
+services:
+  nexus3:
+    container_name: nexus3
+    hostname: nexus3
+    image: sonatype/nexus3
+    user: root
+    environment:
+      - INSTALL4J_ADD_VM_PARAMS=-Xms1g -Xmx2g -XX:MaxDirectMemorySize=2g -Djava.util.prefs.userRoot=/nexus-data/javaprefs -Duser.timezone=Asia/Shanghai
+    restart: always
+    ports:
+      - 8581:8081
+      - 8582:8082
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./data:/nexus-data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f localhost:8081 || exit 1"]
