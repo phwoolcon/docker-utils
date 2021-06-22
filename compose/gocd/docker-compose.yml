@@ -6,6 +6,7 @@ services:
     ports:
       - "8153:8153"
     volumes:
+      - /etc/localtime:/etc/localtime
       - ./data/server/:/godata/
       - ./data/.ssh:/home/go/.ssh/
       - ./init-alpine.sh:/init-alpine.sh
@@ -18,6 +19,7 @@ services:
     hostname: gocd_agent
     user: root
     volumes:
+      - /etc/localtime:/etc/localtime
       - ./data/agent/:/godata/
       - ./data/.ssh:/root/.ssh/
       - ./init-alpine.sh:/init-alpine.sh
