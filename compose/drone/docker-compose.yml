@@ -1,0 +1,51 @@
+version: '3.5'
+
+services:
+  server:
+    image: drone/drone
+    hostname: drone-server
+    container_name: drone-server
+    ports:
+      - 6080:80
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt:ro
+      - ./data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    env_file:
+      - ./.env
+    restart: always
+    extra_hosts:
+      - "${EXTRA_HOSTS}"
+    environment:
+      - DRONE_DATABASE_DRIVER=mysql
+      - DRONE_AGENTS_ENABLED=true
+      - DRONE_SERVER_PROTO=https
+      - DRONE_TLS_AUTOCERT=false
+
+  runner:
+    image: drone/drone-runner-docker
+    hostname: drone-runner
+    container_name: drone-runner
+    restart: always
+    depends_on:
+      - server
+    env_file:
+      - ./.env
+    extra_hosts:
+      - "${EXTRA_HOSTS}"
+    environment:
+      # https://docs.drone.io/runner/docker/installation/linux/
+      # https://docs.drone.io/server/metrics/
+      - DRONE_RPC_PROTO=http
+      - DRONE_RPC_HOST=server
+      - DRONE_RUNNER_CAPACITY=4
+      - DRONE_DEBUG=false
+      - DRONE_TRACE=false
+    ports:
+      - 6081:3000
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /var/run/docker.sock:/var/run/docker.sock
