@@ -1,0 +1,12 @@
+#!/bin/sh
+
+command -v make || {
+    UTILS_BASE="https://ghu.fishdrowned.workers.dev/phwoolcon/docker-utils/master";
+    wget ${UTILS_BASE}/alpine/pick-mirror -O /usr/local/bin/pick-mirror;
+    wget ${UTILS_BASE}/alpine/aliases.sh -O /etc/profile.d/aliases.sh;
+    chmod +x /usr/local/bin/*;
+    pick-mirror;
+    apk add bash-completion curl docker-cli make git openssh-client;
+}
+
+/bin/drone-runner-docker

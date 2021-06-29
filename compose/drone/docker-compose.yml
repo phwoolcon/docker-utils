@@ -41,11 +41,17 @@ services:
       - DRONE_RPC_PROTO=http
       - DRONE_RPC_HOST=server
       - DRONE_RUNNER_CAPACITY=4
+      - DRONE_DOCKER_CONFIG=/root/.docker/config.json
       - DRONE_DEBUG=false
       - DRONE_TRACE=false
+      - ENV=/etc/profile
     ports:
       - 6081:3000
+    entrypoint: ["/runner-entrypoint"]
     volumes:
+      - ./data/.ssh:/root/.ssh
+      - ./data/.docker:/root/.docker
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./runner-entrypoint:/runner-entrypoint
