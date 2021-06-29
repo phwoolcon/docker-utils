@@ -18,6 +18,7 @@ services:
     restart: always
     extra_hosts:
       - "${EXTRA_HOSTS}"
+      - "${EXTRA_HOSTS2}"
     environment:
       - DRONE_DATABASE_DRIVER=mysql
       - DRONE_AGENTS_ENABLED=true
@@ -35,6 +36,7 @@ services:
       - ./.env
     extra_hosts:
       - "${EXTRA_HOSTS}"
+      - "${EXTRA_HOSTS2}"
     environment:
       # https://docs.drone.io/runner/docker/installation/linux/
       # https://docs.drone.io/server/metrics/
