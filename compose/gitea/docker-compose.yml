@@ -16,3 +16,5 @@ services:
       - "127.0.0.1:2222:22"
     env_file:
       - .env
+    extra_hosts:
+      - "${EXTRA_HOSTS}"
