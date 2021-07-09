@@ -56,6 +56,15 @@ docker build --no-cache -t phwoolcon/phwoolcon-dev -f phwoolcon/Dockerfile-dev p
 Common Tools
 --
 
+### cron-list
+List all cron jobs for all users on the host.
+
+```dockerfile
+ARG UTILS_BASE="https://raw.githubusercontent.com/phwoolcon/docker-utils/master"
+RUN wget ${UTILS_BASE}/docker-host -O /usr/local/bin/cron-list; \
+    chmod +x /usr/local/bin/*;
+```
+
 ### dusort
 Sorted version of `du`, skipped directories on different file systems.
 
