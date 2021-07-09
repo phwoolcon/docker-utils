@@ -7,14 +7,15 @@ services:
     container_name: drone-server
     ports:
       - 6080:80
+    entrypoint: ["/server-entrypoint"]
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
       - /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt:ro
       - ./data:/data
       - /var/run/docker.sock:/var/run/docker.sock
-    env_file:
-      - ./.env
+      - ./server-entrypoint:/server-entrypoint
+      - ./.env:/.env
     restart: always
     extra_hosts:
       - "${EXTRA_HOSTS}"
@@ -32,8 +33,6 @@ services:
     restart: always
     depends_on:
       - server
-    env_file:
-      - ./.env
     extra_hosts:
       - "${EXTRA_HOSTS}"
       - "${EXTRA_HOSTS2}"
@@ -57,3 +56,4 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /var/run/docker.sock:/var/run/docker.sock
       - ./runner-entrypoint:/runner-entrypoint
+      - ./.env:/.env

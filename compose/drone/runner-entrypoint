@@ -9,4 +9,9 @@ command -v make || {
     apk add bash-completion curl docker-cli make git openssh-client;
 }
 
+[ -f /.env ] && {
+    set -a;
+    . /.env;
+    set +a;
+}
 /bin/drone-runner-docker

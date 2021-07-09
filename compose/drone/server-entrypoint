@@ -1,0 +1,8 @@
+#!/bin/sh
+
+[ -f /.env ] && {
+    set -a;
+    . /.env;
+    set +a;
+}
+/bin/drone-server
