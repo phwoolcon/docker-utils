@@ -5,6 +5,8 @@ services:
     container_name: nginx
     hostname: nginx
     volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
       - ./data/config/conf.d:/etc/nginx/conf.d
       - ./data/config/snippets:/etc/nginx/snippets
       - ./data/config/sites-enabled:/etc/nginx/sites-enabled
