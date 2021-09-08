@@ -3,6 +3,7 @@ services:
   fpm74:
     user: "${UID}:${GID}"
     image: php:7-fpm-alpine
+    restart: always
     container_name: php-fpm74
     hostname: php-fpm74
     entrypoint: /entrypoint.sh
